@@ -1,14 +1,14 @@
-.main{
+.main {
   margin: 100px 5rem;
 }
 
-.App-header{
-  width:100%;
+.App-header {
+  width: 100%;
 }
 
 /* header */
 
-.header__container{
+.header__container {
   background-color: black;
   height: 50px;
   position: fixed;
@@ -23,7 +23,17 @@
 
 /* form */
 
-form{
+form {
   max-width: 500px;
   margin: auto;
+}
+
+/* letter */
+.letter__container {
+  margin-top: 1rem;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 30px 36px #557da526;
+  padding: 30px;
+  color: #000000db;
 }
