@@ -1,13 +1,13 @@
 import { TextField } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
 import generateLetter from "./LetterGenerater";
 import { Select } from "@mui/material";
 import { MenuItem } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import { FormLabel } from "@material-ui/core";
-import Pdf from "react-to-pdf";
+import Example from "./Example";
+
 const initailState = {
   driverName: "",
   driverFatherName: "",
@@ -25,9 +25,6 @@ const initailState = {
 export default function AuthForm() {
   const [state, setState] = useState(initailState);
   const [letter, setLetter] = useState("");
-  const [generate, setGenerate] = useState(false);
-
-  const ref = useRef("");
 
   useEffect(() => {
     const letter = generateLetter(state);
@@ -42,18 +39,8 @@ export default function AuthForm() {
       };
     });
   };
-
-  const genarateAuth = (e) => {
-    e.preventDefault();
-    //console.log(state);
-
-    const letter = generateLetter(state);
-    setGenerate(true);
-    //console.log(letter);
-  };
   return (
     <>
-      {/* <Stack component="form" noValidate spacing={3} onSubmit={genrateAuth}> */}
       <FormControl style={{ width: "100%" }}>
         <Stack spacing={3}>
           {/* driver */}
@@ -163,22 +150,12 @@ export default function AuthForm() {
             }}
             onChange={handleChange}
           />
-          <Pdf targetRef={ref} filename="code-example.pdf">
-            {({ toPdf }) => (
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                onClick={toPdf}
-              >
-                Generate Pdf
-              </Button>
-            )}
-          </Pdf>
         </Stack>
       </FormControl>
-      <div className="letter__container" ref={ref}>
-        {letter}
+      <div className="letter__container">
+        <div>
+          <Example letter={letter} />
+        </div>
       </div>
     </>
   );
